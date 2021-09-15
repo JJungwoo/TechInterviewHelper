@@ -8,13 +8,9 @@ public class UserVO {
     private String password;
     private String nickname;
     private String email;
-    private Date enroll_date;
-    private Date update_date;
+    private Date enrollDate;
+    private Date updateDate;
     private Byte role;
-
-    public UserVO() {
-
-    }
 
     public static class Builder {
 
@@ -26,45 +22,45 @@ public class UserVO {
         private String password = null;
         private String nickname = null;
         private String email    = null;
-        private Date enroll_date= null;
-        private Date update_date= null;
+        private Date enrollDate = null;
+        private Date updateDate = null;
         private Byte role       = null;
 
         public Builder(Long id) {
             this.id = id;
         }
 
-        public Builder setUserid(String userid) {
+        public Builder userid(String userid) {
             this.userid = userid;
             return this;
         }
 
-        public Builder setPassword(String password) {
+        public Builder password(String password) {
             this.password = password;
             return this;
         }
 
-        public Builder setNickname(String nickname) {
+        public Builder nickname(String nickname) {
             this.nickname = nickname;
             return this;
         }
 
-        public Builder setEmail(String email) {
+        public Builder email(String email) {
             this.email = email;
             return this;
         }
 
-        public Builder setEnroll_date(Date enroll_date) {
-            this.enroll_date = enroll_date;
+        public Builder enrollDate(Date enrollDate) {
+            this.enrollDate = enrollDate;
             return this;
         }
 
-        public Builder setUpdate_date(Date update_date) {
-            this.update_date = update_date;
+        public Builder updateDate(Date updateDate) {
+            this.updateDate = updateDate;
             return this;
         }
 
-        public Builder setRole(Byte role) {
+        public Builder role(Byte role) {
             this.role = role;
             return this;
         }
@@ -80,8 +76,8 @@ public class UserVO {
         this.password = builder.password;
         this.nickname = builder.nickname;
         this.email = builder.email;
-        this.enroll_date = builder.enroll_date;
-        this.update_date = builder.update_date;
+        this.enrollDate = builder.enrollDate;
+        this.updateDate = builder.updateDate;
         this.role = builder.role;
     }
 
@@ -105,12 +101,12 @@ public class UserVO {
         return email;
     }
 
-    public Date getEnroll_date() {
-        return enroll_date;
+    public Date getEnrollDate() {
+        return enrollDate;
     }
 
-    public Date getUpdate_date() {
-        return update_date;
+    public Date getUpdateDate() {
+        return updateDate;
     }
 
     public Byte getRole() {
