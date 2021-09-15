@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import java.sql.Connection;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class DBTest {
 
@@ -25,10 +25,12 @@ public class DBTest {
     @Test
     public void DBCloseTest() {
         OracleDBImpl oracleDB = new OracleDBImpl();
-        try (Connection connection = oracleDB.getInitConnection(url, userid, password);) {
-            assertTrue(connection != null);
+        Connection connection = null;
+        try {
+            connection = oracleDB.getInitConnection(url, userid, password);
+            assertNotNull(connection);
             oracleDB.closeConnection(connection);
-            assertTrue(connection == null);
+            assertTrue(connection.isClosed());
         } catch (Exception e) {
             e.printStackTrace();
         }
