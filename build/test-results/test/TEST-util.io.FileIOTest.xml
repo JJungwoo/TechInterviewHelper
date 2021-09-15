@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="util.io.FileIOTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-09-14T08:24:11" hostname="DESKTOP-HJGHC9H" time="0.005">
-  <properties/>
-  <testcase name="getPropertiesTest" classname="util.io.FileIOTest" time="0.005"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
