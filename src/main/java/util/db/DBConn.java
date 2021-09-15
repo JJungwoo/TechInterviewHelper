@@ -1,6 +1,7 @@
 package util.db;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -13,6 +14,11 @@ public class DBConn {
     private Connection connection;
     private Statement statement;
     private ResultSet resultSet;
+    private PreparedStatement preparedStatement;
+
+    public DBConn() {
+
+    }
 
     public static class Builder {
 
@@ -20,11 +26,12 @@ public class DBConn {
         private Connection connection;
 
         // 추가 항목들
-        private String url;
-        private String userid;
-        private String password;
-        private Statement statement;
-        private ResultSet resultSet;
+        private String url                          = null;
+        private String userid                       = null;
+        private String password                     = null;
+        private Statement statement                 = null;
+        private ResultSet resultSet                 = null;
+        private PreparedStatement preparedStatement = null;
 
         public Builder(Connection connection) {
             this.connection = connection;
@@ -50,6 +57,11 @@ public class DBConn {
             return this;
         }
 
+        public Builder setPreparedStatement(PreparedStatement preparedStatement) {
+            this.preparedStatement = preparedStatement;
+            return this;
+        }
+
         public Builder setResultSet(ResultSet resultSet) {
             this.resultSet = resultSet;
             return this;
@@ -67,5 +79,34 @@ public class DBConn {
         this.connection = builder.connection;
         this.statement = builder.statement;
         this.resultSet = builder.resultSet;
+        this.preparedStatement = builder.preparedStatement;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public Statement getStatement() {
+        return statement;
+    }
+
+    public ResultSet getResultSet() {
+        return resultSet;
+    }
+
+    public PreparedStatement getPreparedStatement() {
+        return preparedStatement;
     }
 }

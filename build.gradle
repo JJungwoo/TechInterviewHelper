@@ -7,8 +7,11 @@ version '1.0.0'
 
 repositories {
     mavenCentral()
+    // 로컬 라이브러리 추가
+    mavenLocal()
 }
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile fileTree(dir: '/src/main/lib', includes: ['*.jar'])
 }

@@ -6,7 +6,7 @@ public abstract class DBUtil {
     static final String ORACLE_DRIVER_CLASS_NAME = "oracle.jdbc.driver.OracleDriver";
     static final String H2_DRIVER_CLASS_NAME = null;
 
-    void closeConnection(Connection connection) {
+    public void closeConnection(Connection connection) {
         if (connection == null) {
             return ;
         }
@@ -30,6 +30,18 @@ public abstract class DBUtil {
         }
     }
 
+    public void closePrepareStatement(PreparedStatement preparedStatement) {
+        if (preparedStatement == null) {
+            return ;
+        }
+
+        try {
+            preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void closeResultSet(ResultSet resultSet) {
         if (resultSet == null) {
             return ;
@@ -42,9 +54,9 @@ public abstract class DBUtil {
         }
     }
 
-    abstract void loadDriver() throws Exception;
+    abstract void loadDriver();
 
-    public Connection getConnection(String url, String user, String password) throws Exception {
+    public Connection getInitConnection(String url, String user, String password) throws Exception {
         loadDriver();
         return DriverManager.getConnection(url, user, password);
     }
