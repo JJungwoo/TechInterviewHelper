@@ -13,7 +13,7 @@ public class UserDAO {
     private static UserDAO userDAO = new UserDAO();
 
     static final String SQL_USER_FIND_BY_ID = "select * from users where userid = ?";
-    static final String SQL_USER_INSERT = "";
+    static final String SQL_USER_INSERT = "insert into users values(Users_SEQ.nextval, ?, ?, ?, ?, sysdate, sysdate, ?)";
     static final String SQL_USER_DELETE = "";
     static final String SQL_USER_UPDATE = "";
 
@@ -36,7 +36,8 @@ public class UserDAO {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                user = new UserVO.Builder(rs.getLong(1))
+                user = new UserVO.Builder()
+                        .id(rs.getLong(1))
                         .userid(rs.getString(2))
                         .password(rs.getString(3))
                         .nickname(rs.getString(4))
@@ -53,8 +54,24 @@ public class UserDAO {
         return user;
     }
 
-    public UserVO save() {
-        return null;
+    public UserVO save(UserVO user) {
+        int result = 0;
+
+        dbConn.initDB("oracle", "src/main/resources/oracleDBinfo.propertise");
+
+        try {
+            PreparedStatement ps = dbConn.getConnection().prepareStatement(SQL_USER_INSERT);
+            ps.setString(1, user.getUserid());
+            ps.setString(2, user.getPassword());
+            ps.setString(3, user.getNickname());
+            ps.setString(4, user.getEmail());
+            ps.setByte(5, user.getRole());
+            result = ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return result >= 1 ? user : null;
     }
 
     public void delete() {

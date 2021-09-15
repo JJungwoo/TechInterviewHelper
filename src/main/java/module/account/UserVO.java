@@ -15,7 +15,7 @@ public class UserVO {
     public static class Builder {
 
         // 필수 항목들
-        private Long id;
+        private Long id = 0L; // auto increment (oracle은 seq)
 
         // 추가 항목들
         private String userid   = null;
@@ -26,8 +26,13 @@ public class UserVO {
         private Date updateDate = null;
         private Byte role       = null;
 
-        public Builder(Long id) {
+        public Builder() {
+
+        }
+
+        public Builder id(Long id) {
             this.id = id;
+            return this;
         }
 
         public Builder userid(String userid) {

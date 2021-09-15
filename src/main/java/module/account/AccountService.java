@@ -15,7 +15,7 @@ public class AccountService {
         return userDAO.findById(id);
     }
 
-    public void save() {
-        userDAO.save();
+    public UserVO save(UserVO user) {
+        return userDAO.save(user);
     }
 }
