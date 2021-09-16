@@ -28,8 +28,6 @@ public class UserDAO {
     public UserVO findById(String userid) {
         UserVO user = null;
 
-        dbConn.initDB("oracle", "src/main/resources/oracleDBinfo.propertise");
-
         try {
             PreparedStatement ps = dbConn.getConnection().prepareStatement(SQL_USER_FIND_BY_ID);
             ps.setString(1, userid);
@@ -57,8 +55,6 @@ public class UserDAO {
     public UserVO save(UserVO user) {
         int result = 0;
 
-        dbConn.initDB("oracle", "src/main/resources/oracleDBinfo.propertise");
-
         try {
             PreparedStatement ps = dbConn.getConnection().prepareStatement(SQL_USER_INSERT);
             ps.setString(1, user.getUserid());
@@ -77,8 +73,6 @@ public class UserDAO {
     public boolean deleteByUserid(String userid) {
         int result = 0;
 
-        dbConn.initDB("oracle", "src/main/resources/oracleDBinfo.propertise");
-
         try {
             PreparedStatement ps = dbConn.getConnection().prepareStatement(SQL_USER_DELETE_BY_USERID);
             ps.setString(1, userid);
@@ -92,8 +86,6 @@ public class UserDAO {
 
     public boolean updatePasswordByUserid(String userid, String password) {
         int result = 0;
-
-        dbConn.initDB("oracle", "src/main/resources/oracleDBinfo.propertise");
 
         try {
             PreparedStatement ps = dbConn.getConnection().prepareStatement(SQL_USER_UPDATE_PASSWORD_BY_USERID);
