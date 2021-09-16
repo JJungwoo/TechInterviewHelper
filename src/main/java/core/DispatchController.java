@@ -1,4 +1,4 @@
-package module.core;
+package core;
 
 import module.account.AccountController;
 import module.account.UserVO;

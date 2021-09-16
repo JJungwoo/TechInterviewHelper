@@ -1,4 +1,4 @@
-import module.core.TechInterviewHelperMainThread;
+import core.TechInterviewHelperMainThread;
 
 public class TechInterviewHelper {
 
