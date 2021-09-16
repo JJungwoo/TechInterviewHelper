@@ -2,10 +2,7 @@ package module.account;
 
 import org.junit.Test;
 
-import java.sql.Date;
-import java.time.LocalDate;
-
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class AccountServiceTest {
 
@@ -17,14 +14,24 @@ public class AccountServiceTest {
     }
 
     @Test
-    public void save() {
+    public void saveTest() {
         UserVO user = new UserVO.Builder()
                     .userid("testuser")
                     .password("1234")
                     .nickname("tester")
                     .email("testuser@gmail.com")
-                    .role((byte) 1).build();
+                    .role((byte) 2).build();
 
         assertEquals("testuser",service.save(user).getUserid());
+    }
+
+    @Test
+    public void deleteTest() {
+        assertTrue(service.deleteByUserid("testuser"));
+    }
+
+    @Test
+    public void updatePasswordByUseridTest() {
+        assertTrue(service.updatePasswordByUserid("testuser", "1111"));
     }
 }

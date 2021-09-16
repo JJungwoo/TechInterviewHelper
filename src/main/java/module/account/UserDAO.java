@@ -14,8 +14,8 @@ public class UserDAO {
 
     static final String SQL_USER_FIND_BY_ID = "select * from users where userid = ?";
     static final String SQL_USER_INSERT = "insert into users values(Users_SEQ.nextval, ?, ?, ?, ?, sysdate, sysdate, ?)";
-    static final String SQL_USER_DELETE = "";
-    static final String SQL_USER_UPDATE = "";
+    static final String SQL_USER_DELETE_BY_USERID = "delete from users where userid = ?";
+    static final String SQL_USER_UPDATE_PASSWORD_BY_USERID = "update users set password = ? where userid = ?";
 
     // jdbc 에서 데이터 처리하기 위한 DB Connection 객체 가져오기
     static private DBConn dbConn = DBConn.getInstance();
@@ -74,11 +74,36 @@ public class UserDAO {
         return result >= 1 ? user : null;
     }
 
-    public void delete() {
+    public boolean deleteByUserid(String userid) {
+        int result = 0;
 
+        dbConn.initDB("oracle", "src/main/resources/oracleDBinfo.propertise");
+
+        try {
+            PreparedStatement ps = dbConn.getConnection().prepareStatement(SQL_USER_DELETE_BY_USERID);
+            ps.setString(1, userid);
+            result = ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return result >= 1;
     }
 
-    public void update() {
+    public boolean updatePasswordByUserid(String userid, String password) {
+        int result = 0;
 
+        dbConn.initDB("oracle", "src/main/resources/oracleDBinfo.propertise");
+
+        try {
+            PreparedStatement ps = dbConn.getConnection().prepareStatement(SQL_USER_UPDATE_PASSWORD_BY_USERID);
+            ps.setString(1, password);
+            ps.setString(2, userid);
+            result = ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return result >= 1;
     }
 }
