@@ -14,10 +14,7 @@ public class UserVO {
 
     public static class Builder {
 
-        // 필수 항목들
         private Long id = 0L; // auto increment (oracle은 seq)
-
-        // 추가 항목들
         private String userid   = null;
         private String password = null;
         private String nickname = null;

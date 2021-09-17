@@ -20,9 +20,6 @@ import static org.junit.Assert.assertTrue;
 public class UserDAOTest {
 
     static final String SQL_SELECT_ALL = "select * from users";
-    static final String SQL_SELECT_BY_ID = "select * from departments where department_id = ?";
-    static final String SQL_SELECT_BY_NAME = "select * from departments where department_name like ?";
-    static final String SQL_SELECT_BY_LOC = "select * from departments where location_id = ?";
     static final String SQL_INSERT_USER = "insert into users (id, userid, password, nickname, email, enroll_date, update_date, role) " +
                                             "values (Users_SEQ.nextval, 'testuser', '1234', 'tester', 'testuser@gmail.com', sysdate, sysdate, 1)";
 

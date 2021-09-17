@@ -1,18 +1,22 @@
 package module.problem;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class ProblemServiceTest extends TestCase {
+public class ProblemServiceTest {
 
-    public void testSave() {
+    @Test
+    public void saveTest() {
     }
 
-    public void testFindById() {
+    @Test
+    public void findByIdTest() {
     }
 
-    public void testDelete() {
+    @Test
+    public void deleteTest() {
     }
 
-    public void testUpdate() {
+    @Test
+    public void updateTest() {
     }
 }
