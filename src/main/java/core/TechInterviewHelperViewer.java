@@ -52,22 +52,26 @@ public class TechInterviewHelperViewer {
                     userMenuPrint();
                     userInput = bufferedReader.readLine();
                 } break;
-                default:
+                case 2: {
+                    problemMenuPrint();
                     userInput = bufferedReader.readLine();
-                    break;
+                } break;
             }
-            System.out.println("입력된 메시지 : " + userInput);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return userInput;
     }
 
+    private void problemMenuPrint() {
+        System.out.println("1) 문제 추가\n2) 문제 찾기");
+    }
+
     private void mainMenuPrint() {
-        System.out.println("1) 유저 메뉴\n 0) 종료\n명령어를 입력해주세요.");
+        System.out.println("1) 유저 메뉴\n2) 문제 메뉴\n0) 종료\n명령어를 입력해주세요.");
     }
 
     private void userMenuPrint() {
-        System.out.println("1) 유저 추가\n 2) 유저 찾기\n 3) 유저 패스워드 변경\n 4) 유저 삭제");
+        System.out.println("1) 유저 추가\n2) 유저 찾기\n3) 유저 패스워드 변경\n4) 유저 삭제");
     }
 }
