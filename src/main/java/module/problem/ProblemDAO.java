@@ -7,6 +7,7 @@ import java.sql.Clob;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProblemDAO {
@@ -68,7 +69,7 @@ public class ProblemDAO {
     }
 
     public List<ProblemVO> problemSelectAll() {
-        List<ProblemVO> problemVOList = null;
+        List<ProblemVO> problemVOList = new ArrayList<>();
 
         try {
             PreparedStatement ps = dbConn.getConnection().prepareStatement(SQL_PROBLEM_SELECT_ALL);

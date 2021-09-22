@@ -1,8 +1,11 @@
 package core;
 
+import module.problem.ProblemVO;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 public class Viewer {
     protected InputStreamReader inputStreamReader;
@@ -41,4 +44,15 @@ public class Viewer {
         System.out.println("시스템 종료");
     }
 
+    public <T> void ListAllPrint(List<T> list) {
+        System.out.println("--------- ListAllPrint ---------");
+        for (T t : list) {
+            System.out.println(t.toString());
+        }
+        System.out.println("--------- ListAllPrint ---------");
+    }
+
+    public <T> void elementPrint(T t) {
+        System.out.println(t.toString());
+    }
 }

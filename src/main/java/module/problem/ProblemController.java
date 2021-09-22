@@ -3,6 +3,9 @@ package module.problem;
 import core.Controller;
 import core.UserInputParser;
 
+import java.util.List;
+import java.util.Random;
+
 public class ProblemController implements Controller {
 
     private static ProblemViewer problemViewer = ProblemViewer.getInstance();
@@ -23,8 +26,18 @@ public class ProblemController implements Controller {
         return problemService.findById(id);
     }
 
+    public List<ProblemVO> selectProblemAll() {
+        return problemService.selectProblemAll();
+    }
+
+    public ProblemVO randomSelectProblem() {
+        List<ProblemVO> list = problemService.selectProblemAll();
+        return list.get(new Random().nextInt(list.size()));
+    }
+
     @Override
     public void start() {
+        problemViewer.problemMenuPrint();
         dispatchCommand(problemViewer.inputInt());
     }
 
@@ -35,6 +48,12 @@ public class ProblemController implements Controller {
                 problemViewer.createProblemPrint();
                 ProblemVO problem = UserInputParser.parsingStrToProblemVO(problemViewer.inputStr());
                 createProblem(problem);
+                break;
+            case 2:
+                problemViewer.ListAllPrint(selectProblemAll());
+                break;
+            case 3:
+                problemViewer.elementPrint(randomSelectProblem());
                 break;
             case 0:
                 return false;
