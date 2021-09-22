@@ -114,4 +114,18 @@ public class UserVO {
     public Byte getRole() {
         return role;
     }
+
+    @Override
+    public String toString() {
+        return "UserVO{" +
+                "id=" + id +
+                ", userid='" + userid + '\'' +
+                ", password='" + password + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", email='" + email + '\'' +
+                ", enrollDate=" + enrollDate +
+                ", updateDate=" + updateDate +
+                ", role=" + role +
+                '}';
+    }
 }

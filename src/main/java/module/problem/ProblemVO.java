@@ -114,4 +114,19 @@ public class ProblemVO {
     public Long getTid() {
         return tid;
     }
+
+    @Override
+    public String toString() {
+        return "ProblemVO{" +
+                "pid=" + pid +
+                ", title='" + title + '\'' +
+                ", answer='" + answer + '\'' +
+                ", likeCount=" + likeCount +
+                ", unlikeCount=" + unlikeCount +
+                ", enrollDate=" + enrollDate +
+                ", updateDate=" + updateDate +
+                ", tid=" + tid +
+                '}';
+    }
+
 }
