@@ -7,6 +7,7 @@ import java.sql.Clob;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class ProblemDAO {
 
@@ -14,6 +15,7 @@ public class ProblemDAO {
 
     static final String SQL_PROBLEM_FIND_BY_ID = "select * from problems where pid = ?";
     static final String SQL_PROBLEM_INSERT = "insert into problems values(Problems_SEQ.nextval, ?, ?, ?, ?, sysdate, sysdate, ?)";
+    static final String SQL_PROBLEM_SELECT_ALL = "select * from problems";
 
     static private DBConn dbConn = DBConn.getInstance();
 
@@ -63,6 +65,31 @@ public class ProblemDAO {
             e.printStackTrace();
         }
         return problem;
+    }
+
+    public List<ProblemVO> problemSelectAll() {
+        List<ProblemVO> problemVOList = null;
+
+        try {
+            PreparedStatement ps = dbConn.getConnection().prepareStatement(SQL_PROBLEM_SELECT_ALL);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                problemVOList.add(new ProblemVO.Builder()
+                        .pid(rs.getLong(1))
+                        .title(rs.getString(2))
+                        .answer(rs.getString(3))
+                        .likeCount(rs.getLong(4))
+                        .unlikeCount(rs.getLong(5))
+                        .enrollDate(rs.getDate(6))
+                        .updateDate(rs.getDate(7))
+                        .tid(rs.getLong(8))
+                        .build());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return problemVOList;
     }
 
     public void delete() {
