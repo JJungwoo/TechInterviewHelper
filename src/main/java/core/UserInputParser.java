@@ -8,6 +8,9 @@ public class UserInputParser {
 
     public static UserVO parsingStrToUserVO(String userInput) {
         String[] tokens = userInput.split(" ");
+        if (tokens.length != 5) {
+            return null;
+        }
         return new UserVO.Builder()
                         .userid(tokens[0])
                         .password(tokens[1])
@@ -19,6 +22,9 @@ public class UserInputParser {
 
     public static ProblemVO parsingStrToProblemVO(String userInput) {
         String[] tokens = userInput.split(" ");
+        if (tokens.length != 2) {
+            return null;
+        }
         return new ProblemVO.Builder()
                             .title(tokens[0])
                             .answer(tokens[1])
@@ -30,5 +36,9 @@ public class UserInputParser {
             return null;
         }
         return userInput.split(" ");
+    }
+
+    public static int commandParsingToInt(String userInput) {
+        return Integer.parseInt(userInput);
     }
 }

@@ -2,17 +2,12 @@ package core;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
-// 사용자에게 출력하거나 입력하는 기능을 모두 담당
-public class TechInterviewHelperViewer {
-
-    private InputStreamReader inputStreamReader;
-    private BufferedReader bufferedReader;
+// 사용자에게 출력하거나 입력하는 기능을 담당
+public class TechInterviewHelperViewer extends Viewer{
 
     public TechInterviewHelperViewer() {
-        inputStreamReader = new InputStreamReader(System.in);
-        bufferedReader = new BufferedReader(inputStreamReader);
+        super();
     }
 
     public void closeTechInterviewHelperViewer() {
@@ -40,7 +35,7 @@ public class TechInterviewHelperViewer {
         System.out.println("===========================");
     }
 
-    public String input(int status) {
+    public int input(int status) {
         String userInput = null;
         try {
             switch (status) {
@@ -60,7 +55,7 @@ public class TechInterviewHelperViewer {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return userInput;
+        return Integer.parseInt(userInput);
     }
 
     private void problemMenuPrint() {
@@ -74,4 +69,5 @@ public class TechInterviewHelperViewer {
     private void userMenuPrint() {
         System.out.println("1) 유저 추가\n2) 유저 찾기\n3) 유저 패스워드 변경\n4) 유저 삭제");
     }
+
 }

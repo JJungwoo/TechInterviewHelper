@@ -1,15 +1,11 @@
 package module.account;
 
-public class AccountController {
+import core.Controller;
+import core.UserInputParser;
 
-    private static AccountController accountController = new AccountController();
+public class AccountController implements Controller {
 
     private static AccountService accountService = AccountService.getInstance();
-
-    // 싱글톤
-    public static AccountController getInstance() {
-        return accountController;
-    }
 
     public String userCreate(UserVO user) {
         return accountService.save(user).getUserid();
@@ -18,4 +14,28 @@ public class AccountController {
     public UserVO findByUserid(String userid) {
         return accountService.findById(userid);
     }
+
+    private AccountViewer accountViewer = AccountViewer.getInstance();
+
+    @Override
+    public void start() {
+        dispatchCommand(accountViewer.inputInt());
+    }
+
+    @Override
+    public boolean dispatchCommand(int command) {
+        switch (command) {
+            case 1:
+                accountViewer.createUserPrint();
+                UserVO user = UserInputParser.parsingStrToUserVO(accountViewer.inputStr());
+                userCreate(user);
+                break;
+            case 0:
+                return false;
+            default:
+                break;
+        }
+        return true;
+    }
+
 }
