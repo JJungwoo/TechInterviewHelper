@@ -1,7 +1,5 @@
 package core;
 
-import module.problem.ProblemVO;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

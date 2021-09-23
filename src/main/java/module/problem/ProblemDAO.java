@@ -2,8 +2,6 @@ package module.problem;
 
 import util.db.DBConn;
 
-import java.lang.management.ClassLoadingMXBean;
-import java.sql.Clob;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
