@@ -13,7 +13,8 @@ public class UserDAO {
     private static UserDAO userDAO = new UserDAO();
 
     static final String SQL_USER_FIND_BY_ID = "select * from users where userid = ?";
-    static final String SQL_USER_INSERT = "insert into users values(Users_SEQ.nextval, ?, ?, ?, ?, sysdate, sysdate, ?)";
+//    static final String SQL_USER_INSERT = "insert into users values(Users_SEQ.nextval, ?, ?, ?, ?, sysdate, sysdate, ?)";
+static final String SQL_USER_INSERT = "insert into users(userid, password, nickname, email, enroll_date, update_date, role) values(?, ?, ?, ?, sysdate, sysdate, ?)";
     static final String SQL_USER_DELETE_BY_USERID = "delete from users where userid = ?";
     static final String SQL_USER_UPDATE_PASSWORD_BY_USERID = "update users set password = ? where userid = ?";
 

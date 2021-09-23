@@ -2,7 +2,7 @@ package util.db;
 
 import java.sql.*;
 
-public abstract class DBUtil {
+public class DBUtil {
 
     public void closeConnection(Connection connection) {
         if (connection == null) {

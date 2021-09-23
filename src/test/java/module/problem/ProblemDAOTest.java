@@ -24,7 +24,8 @@ public class ProblemDAOTest {
         Properties properties = FileIOUtil.jdbcGetPropertise("src/main/resources/oracleDBinfo.propertise");
 
         try {
-            conn.setConnection(oracleDB.getInitConnection(,
+            conn.setConnection(oracleDB.getInitConnection(
+                    properties.getProperty("driver-class-name"),
                     properties.getProperty("url"),
                     properties.getProperty("userid"), properties.getProperty("password")));
         } catch (Exception e) {
