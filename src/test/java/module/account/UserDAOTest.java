@@ -7,7 +7,6 @@ import util.db.DBConn;
 import util.db.OracleDBImpl;
 import util.io.FileIOUtil;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -38,9 +37,9 @@ public class UserDAOTest {
         Properties properties = FileIOUtil.jdbcGetPropertise("src/main/resources/oracleDBinfo.propertise");
 
         try {
-            conn.setConnection(oracleDB.getInitConnection(properties.getProperty("url"),
-                                                            properties.getProperty("userid"),
-                                                            properties.getProperty("password")));
+            conn.setConnection(oracleDB.getInitConnection(,
+                    properties.getProperty("url"),
+                    properties.getProperty("userid"), properties.getProperty("password")));
         } catch (Exception e) {
             e.printStackTrace();
         }

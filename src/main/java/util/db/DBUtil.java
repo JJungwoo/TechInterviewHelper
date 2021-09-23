@@ -3,8 +3,6 @@ package util.db;
 import java.sql.*;
 
 public abstract class DBUtil {
-    static final String ORACLE_DRIVER_CLASS_NAME = "oracle.jdbc.driver.OracleDriver";
-    static final String H2_DRIVER_CLASS_NAME = null;
 
     public void closeConnection(Connection connection) {
         if (connection == null) {
@@ -54,10 +52,16 @@ public abstract class DBUtil {
         }
     }
 
-    abstract void loadDriver();
+    public void loadDriver(String driver) {
+        try {
+            Class.forName(driver);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
-    public Connection getInitConnection(String url, String user, String password) throws Exception {
-        loadDriver();
+    public Connection getInitConnection(String driver, String url, String user, String password) throws Exception {
+        loadDriver(driver);
         return DriverManager.getConnection(url, user, password);
     }
 }

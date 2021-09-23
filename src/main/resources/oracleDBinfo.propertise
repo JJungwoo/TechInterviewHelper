@@ -1,3 +1,4 @@
+driver-class-name=oracle.jdbc.driver.OracleDriver
 url=jdbc:oracle:thin:@localhost:1521:xe
 userid=hr
 password=hr

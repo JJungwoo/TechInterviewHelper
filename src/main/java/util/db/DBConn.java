@@ -37,9 +37,10 @@ public class DBConn {
 
         try {
             Properties properties = FileIOUtil.jdbcGetPropertise(path);
-            connection = dbUtil.getInitConnection(properties.getProperty("url"),
-                                                    properties.getProperty("userid"),
-                                                    properties.getProperty("password"));
+            connection = dbUtil.getInitConnection(
+                    properties.getProperty("driver-class-name"),
+                    properties.getProperty("url"),
+                    properties.getProperty("userid"), properties.getProperty("password"));
         } catch (Exception e) {
             e.printStackTrace();
         }

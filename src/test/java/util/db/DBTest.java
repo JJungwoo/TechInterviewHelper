@@ -15,7 +15,7 @@ public class DBTest {
     @Test
     public void DBConnectionTest() {
         OracleDBImpl oracleDB = new OracleDBImpl();
-        try (Connection connection = oracleDB.getInitConnection(url, userid, password);) {
+        try (Connection connection = oracleDB.getInitConnection(, url, userid, password);) {
             assertTrue(connection != null);
         } catch (Exception e) {
             e.printStackTrace();
@@ -27,7 +27,7 @@ public class DBTest {
         OracleDBImpl oracleDB = new OracleDBImpl();
         Connection connection = null;
         try {
-            connection = oracleDB.getInitConnection(url, userid, password);
+            connection = oracleDB.getInitConnection(, url, userid, password);
             assertNotNull(connection);
             oracleDB.closeConnection(connection);
             assertTrue(connection.isClosed());
