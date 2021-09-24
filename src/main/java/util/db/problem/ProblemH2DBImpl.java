@@ -16,8 +16,9 @@ public class ProblemH2DBImpl extends H2DBImpl {
     static private DBConn dbConn = DBConn.getInstance();
 
     @Override
-    public PreparedStatement insert(ProblemVO problem) throws SQLException {
+    public <T> PreparedStatement insert(T t) throws SQLException {
         PreparedStatement ps = dbConn.getConnection().prepareStatement(SQL_PROBLEM_INSERT);
+        ProblemVO problem = (ProblemVO) t;
         ps.setString(1, problem.getTitle());
         ps.setString(2, problem.getAnswer());
         ps.setLong(3, problem.getLikeCount());
@@ -27,14 +28,14 @@ public class ProblemH2DBImpl extends H2DBImpl {
     }
 
     @Override
-    public PreparedStatement findById(Long pid) throws SQLException {
+    public PreparedStatement findById(String id) throws SQLException {
         PreparedStatement ps = dbConn.getConnection().prepareStatement(SQL_PROBLEM_FIND_BY_ID);
-        ps.setLong(1, pid);
+        ps.setLong(1, Long.parseLong(id));
         return ps;
     }
 
     @Override
-    public PreparedStatement problemSelectAll() throws SQLException {
+    public PreparedStatement selectAll() throws SQLException {
         PreparedStatement ps = dbConn.getConnection().prepareStatement(SQL_PROBLEM_SELECT_ALL);
         return ps;
     }

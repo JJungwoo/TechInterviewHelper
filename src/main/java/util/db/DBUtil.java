@@ -1,7 +1,5 @@
 package util.db;
 
-import module.problem.ProblemVO;
-
 import java.sql.*;
 
 public abstract class DBUtil {
@@ -42,9 +40,9 @@ public abstract class DBUtil {
         }
     }
 
-    public abstract PreparedStatement insert(ProblemVO problem) throws SQLException;
+    public abstract <T> PreparedStatement insert(T t) throws SQLException;
 
-    public abstract PreparedStatement findById(Long pid) throws SQLException;
+    public abstract PreparedStatement findById(String id) throws SQLException;
 
-    public abstract PreparedStatement problemSelectAll() throws SQLException;
+    public abstract PreparedStatement selectAll() throws SQLException;
 }

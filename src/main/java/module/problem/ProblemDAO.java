@@ -41,7 +41,7 @@ public class ProblemDAO {
         return result >= 1 ? problem : null;
     }
 
-    public ProblemVO findById(Long pid) {
+    public ProblemVO findById(String pid) {
         ProblemVO problem = null;
 
         try {
@@ -72,7 +72,7 @@ public class ProblemDAO {
 
         try {
             DBUtil dbUtil = dbConn.getDbUtil();
-            PreparedStatement ps = dbUtil.problemSelectAll();
+            PreparedStatement ps = dbUtil.selectAll();
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 problemVOList.add(new ProblemVO.Builder()

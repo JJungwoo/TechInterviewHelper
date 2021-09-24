@@ -1,6 +1,8 @@
 package module.account;
 
 import util.db.DBConn;
+import util.db.account.UserH2DBImpl;
+import util.db.account.UserOracleDBImpl;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,17 +14,17 @@ public class UserDAO {
 
     private static UserDAO userDAO = new UserDAO();
 
-    static final String SQL_USER_FIND_BY_ID = "select * from users where userid = ?";
-    static final String SQL_USER_INSERT = "insert into users values(Users_SEQ.nextval, ?, ?, ?, ?, sysdate, sysdate, ?)";
-//    static final String SQL_USER_INSERT = "insert into users(userid, password, nickname, email, enroll_date, update_date, role) values(?, ?, ?, ?, sysdate, sysdate, ?)";
-    static final String SQL_USER_DELETE_BY_USERID = "delete from users where userid = ?";
-    static final String SQL_USER_UPDATE_PASSWORD_BY_USERID = "update users set password = ? where userid = ?";
-
     // jdbc 에서 데이터 처리하기 위한 DB Connection 객체 가져오기
     static private DBConn dbConn = DBConn.getInstance();
 
     // 싱글톤 -> 나중에 애노테이션으로 리팩토링 필요
     public static UserDAO getInstance() {
+        String database = dbConn.getDatabase();
+        if (database.equals("oracle")) {
+            dbConn.setDbUtil(new UserOracleDBImpl());
+        } else if (database.equals("h2")) {
+            dbConn.setDbUtil(new UserH2DBImpl());
+        }
         return userDAO;
     }
 
@@ -30,10 +32,8 @@ public class UserDAO {
         UserVO user = null;
 
         try {
-            PreparedStatement ps = dbConn.getConnection().prepareStatement(SQL_USER_FIND_BY_ID);
-            ps.setString(1, userid);
+            PreparedStatement ps = dbConn.getDbUtil().findById(userid);
             ResultSet rs = ps.executeQuery();
-
             if (rs.next()) {
                 user = new UserVO.Builder()
                         .id(rs.getLong(1))
@@ -57,12 +57,7 @@ public class UserDAO {
         int result = 0;
 
         try {
-            PreparedStatement ps = dbConn.getConnection().prepareStatement(SQL_USER_INSERT);
-            ps.setString(1, user.getUserid());
-            ps.setString(2, user.getPassword());
-            ps.setString(3, user.getNickname());
-            ps.setString(4, user.getEmail());
-            ps.setByte(5, user.getRole());
+            PreparedStatement ps = dbConn.getDbUtil().insert(user);
             result = ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -75,8 +70,7 @@ public class UserDAO {
         int result = 0;
 
         try {
-            PreparedStatement ps = dbConn.getConnection().prepareStatement(SQL_USER_DELETE_BY_USERID);
-            ps.setString(1, userid);
+            PreparedStatement ps = ((UserOracleDBImpl) dbConn.getDbUtil()).deleteByUserid(userid);
             result = ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -89,9 +83,7 @@ public class UserDAO {
         int result = 0;
 
         try {
-            PreparedStatement ps = dbConn.getConnection().prepareStatement(SQL_USER_UPDATE_PASSWORD_BY_USERID);
-            ps.setString(1, password);
-            ps.setString(2, userid);
+            PreparedStatement ps = ((UserOracleDBImpl) dbConn.getDbUtil()).updatePasswordByUserid(userid, password);
             result = ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

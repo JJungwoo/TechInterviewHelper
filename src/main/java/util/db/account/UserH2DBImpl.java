@@ -1,6 +1,5 @@
 package util.db.account;
 
-import module.problem.ProblemVO;
 import util.db.H2DBImpl;
 
 import java.sql.PreparedStatement;
@@ -9,17 +8,17 @@ import java.sql.SQLException;
 public class UserH2DBImpl extends H2DBImpl {
 
     @Override
-    public PreparedStatement insert(ProblemVO problem) throws SQLException {
+    public <T> PreparedStatement insert(T t) throws SQLException {
         return null;
     }
 
     @Override
-    public PreparedStatement findById(Long pid) throws SQLException {
+    public PreparedStatement findById(String id) throws SQLException {
         return null;
     }
 
     @Override
-    public PreparedStatement problemSelectAll() throws SQLException {
+    public PreparedStatement selectAll() throws SQLException {
         return null;
     }
 }

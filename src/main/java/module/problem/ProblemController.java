@@ -22,7 +22,7 @@ public class ProblemController implements Controller {
         problemService.save(problem);
     }
 
-    public ProblemVO findById(Long id) {
+    public ProblemVO findById(String id) {
         return problemService.findById(id);
     }
 

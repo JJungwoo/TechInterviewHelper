@@ -16,7 +16,7 @@ public class ProblemService {
         return problemDAO.save(problem);
     }
 
-    public ProblemVO findById(Long id) {
+    public ProblemVO findById(String id) {
         return problemDAO.findById(id);
     }
 

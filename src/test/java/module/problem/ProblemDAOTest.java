@@ -52,6 +52,6 @@ public class ProblemDAOTest {
 
     @Test
     public void findByIdTest() {
-        assertEquals("title", problemDAO.findById(1L).getTitle());
+        assertEquals("title", problemDAO.findById("1").getTitle());
     }
 }
