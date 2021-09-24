@@ -46,7 +46,7 @@ public class ProblemController implements Controller {
         switch (command) {
             case 1:
                 problemViewer.createProblemPrint();
-                ProblemVO problem = UserInputParser.parsingStrToProblemVO(problemViewer.inputStr());
+                ProblemVO problem = UserInputParser.parsingStrToProblemVO(problemViewer.inputStrList());
                 createProblem(problem);
                 break;
             case 2:

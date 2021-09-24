@@ -3,6 +3,7 @@ package core;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Viewer {
@@ -12,6 +13,16 @@ public class Viewer {
     public Viewer() {
         inputStreamReader = new InputStreamReader(System.in);
         bufferedReader = new BufferedReader(inputStreamReader);
+    }
+
+    public List<String> inputStrList() {
+        List<String> list = new ArrayList<>();
+        try {
+            list.add(bufferedReader.readLine());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
     public String inputStr() {

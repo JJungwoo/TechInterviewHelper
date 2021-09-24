@@ -3,6 +3,8 @@ package core;
 import module.account.UserVO;
 import module.problem.ProblemVO;
 
+import java.util.List;
+
 // 사용자 메시지를 형태에 따라 맞게 파싱하여 객체 반환
 public class UserInputParser {
 
@@ -20,14 +22,13 @@ public class UserInputParser {
                         .build();
     }
 
-    public static ProblemVO parsingStrToProblemVO(String userInput) {
-        String[] tokens = userInput.split(" ");
-        if (tokens.length != 2) {
+    public static ProblemVO parsingStrToProblemVO(List<String> userInput) {
+        if (userInput.size() != 2) {
             return null;
         }
         return new ProblemVO.Builder()
-                            .title(tokens[0])
-                            .answer(tokens[1])
+                            .title(userInput.get(0))
+                            .answer(userInput.get(1))
                             .build();
     }
 
