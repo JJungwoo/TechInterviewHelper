@@ -32,10 +32,7 @@ public class ProblemDAO {
 
         try {
             DBUtil dbUtil = dbConn.getDbUtil();
-            PreparedStatement ps = null;
-
-            ps = dbUtil.insert(problem);
-
+            PreparedStatement ps = dbUtil.insert(problem);
             result = ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -49,10 +46,7 @@ public class ProblemDAO {
 
         try {
             DBUtil dbUtil = dbConn.getDbUtil();
-            PreparedStatement ps = null;
-
-            ps = dbUtil.findById(pid);
-
+            PreparedStatement ps = dbUtil.findById(pid);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 problem = new ProblemVO.Builder()
@@ -78,10 +72,7 @@ public class ProblemDAO {
 
         try {
             DBUtil dbUtil = dbConn.getDbUtil();
-            PreparedStatement ps = null;
-
-            ps = dbUtil.problemSelectAll();
-
+            PreparedStatement ps = dbUtil.problemSelectAll();
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 problemVOList.add(new ProblemVO.Builder()
