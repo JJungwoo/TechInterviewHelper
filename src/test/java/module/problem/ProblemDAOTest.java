@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import util.db.DBConn;
 import util.db.OracleDBImpl;
+import util.db.problem.ProblemOracleDBImpl;
 import util.io.FileIOUtil;
 
 import java.util.Properties;
@@ -20,11 +21,10 @@ public class ProblemDAOTest {
 
     @Before
     public void initDB() {
-        oracleDB = new OracleDBImpl();
         Properties properties = FileIOUtil.jdbcGetPropertise("src/main/resources/oracleDBinfo.propertise");
 
         try {
-            conn.setConnection(oracleDB.getInitConnection(
+            conn.setConnection(conn.getInitConnection(
                     properties.getProperty("driver-class-name"),
                     properties.getProperty("url"),
                     properties.getProperty("userid"), properties.getProperty("password")));
@@ -35,7 +35,7 @@ public class ProblemDAOTest {
 
     @After
     public void closeDB() {
-        oracleDB.closeConnection(conn.getConnection());
+        conn.closeConnection(conn.getConnection());
     }
 
     @Test

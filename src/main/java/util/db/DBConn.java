@@ -10,6 +10,7 @@ public class DBConn {
     // 싱글톤
     private static DBConn dbConn = new DBConn();
 
+    private String database;
     private String url;
     private String userid;
     private String password;
@@ -27,17 +28,10 @@ public class DBConn {
 
     // 요청되는 DB에 따라 connection 변경
     public boolean initDB(String database, String path) {
-        if (database.equals("oracle")) {
-            dbUtil = new OracleDBImpl();
-        } else if (database.equals("h2")) {
-            dbUtil = new H2DBImpl();
-        } else {
-            return false;
-        }
-
+        this.database = database;
         try {
             Properties properties = FileIOUtil.jdbcGetPropertise(path);
-            connection = dbUtil.getInitConnection(
+            connection = getInitConnection(
                     properties.getProperty("driver-class-name"),
                     properties.getProperty("url"),
                     properties.getProperty("userid"), properties.getProperty("password"));
@@ -51,7 +45,32 @@ public class DBConn {
         dbUtil.closeResultSet(resultSet);
         dbUtil.closeStatement(statement);
         dbUtil.closePrepareStatement(preparedStatement);
-        dbUtil.closeConnection(connection);
+        closeConnection(connection);
+    }
+
+    public void loadDriver(String driver) {
+        try {
+            Class.forName(driver);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Connection getInitConnection(String driver, String url, String user, String password) throws Exception {
+        loadDriver(driver);
+        return DriverManager.getConnection(url, user, password);
+    }
+
+    public void closeConnection(Connection connection) {
+        if (connection == null) {
+            return ;
+        }
+
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setUrl(String url) {
@@ -82,6 +101,10 @@ public class DBConn {
         this.preparedStatement = preparedStatement;
     }
 
+    public void setDbUtil(DBUtil dbUtil) {
+        this.dbUtil = dbUtil;
+    }
+
     public String getUrl() {
         return url;
     }
@@ -108,5 +131,13 @@ public class DBConn {
 
     public PreparedStatement getPreparedStatement() {
         return preparedStatement;
+    }
+
+    public DBUtil getDbUtil() {
+        return dbUtil;
+    }
+
+    public String getDatabase() {
+        return database;
     }
 }

@@ -7,6 +7,7 @@ import util.db.DBConn;
 import util.db.DBUtil;
 import util.db.H2DBImpl;
 import util.db.OracleDBImpl;
+import util.db.problem.ProblemH2DBImpl;
 import util.io.FileIOUtil;
 
 import java.sql.Connection;
@@ -49,16 +50,17 @@ public class UserDAOTest {
 
     private final static String oraclePath = "src/main/resources/oracleDBinfo.propertise";
     private final static String h2Path = "src/main/resources/h2DBinfo.propertise";
+
     // 테스트용 DB 또는 트랜잭션 속성을 통해 테스트 데이터 끝나면 모두 삭제 기능 필요
     // 테스트 할 때마다 테스트용 디비에 테이블 만들고 테스트 끝내거나 테스트한 데이터 전부 삭제하도록 트랜잭션 특성 필요.
     // 트랜잭션 속성은 commit 메서드로로 나중에 리팩토링 가능할 듯.
     @Before
     public void initDB() {
-        dbUtil = new DBUtil();
+        DBConn dbConn = new DBConn();
         Properties properties = FileIOUtil.jdbcGetPropertise(h2Path);
 
         try {
-            conn.setConnection(dbUtil.getInitConnection(
+            conn.setConnection(dbConn.getInitConnection(
                     properties.getProperty("driver-class-name"),
                     properties.getProperty("url"),
                     properties.getProperty("userid"), properties.getProperty("password")));
@@ -72,7 +74,7 @@ public class UserDAOTest {
         dbUtil.closeResultSet(resultSet);
         dbUtil.closeStatement(statement);
         dbUtil.closePrepareStatement(preparedStatement);
-        dbUtil.closeConnection(conn.getConnection());
+        conn.closeConnection(conn.getConnection());
     }
 
     @Test

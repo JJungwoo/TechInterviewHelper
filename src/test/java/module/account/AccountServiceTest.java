@@ -1,6 +1,5 @@
 package module.account;
 
-import core.DispatchController;
 import org.junit.Before;
 import org.junit.Test;
 import util.db.DBConn;

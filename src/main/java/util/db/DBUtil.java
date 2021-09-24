@@ -1,20 +1,10 @@
 package util.db;
 
+import module.problem.ProblemVO;
+
 import java.sql.*;
 
-public class DBUtil {
-
-    public void closeConnection(Connection connection) {
-        if (connection == null) {
-            return ;
-        }
-
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+public abstract class DBUtil {
 
     public void closeStatement(Statement statement) {
         if (statement == null) {
@@ -52,16 +42,9 @@ public class DBUtil {
         }
     }
 
-    public void loadDriver(String driver) {
-        try {
-            Class.forName(driver);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+    public abstract PreparedStatement insert(ProblemVO problem) throws SQLException;
 
-    public Connection getInitConnection(String driver, String url, String user, String password) throws Exception {
-        loadDriver(driver);
-        return DriverManager.getConnection(url, user, password);
-    }
+    public abstract PreparedStatement findById(Long pid) throws SQLException;
+
+    public abstract PreparedStatement problemSelectAll() throws SQLException;
 }

@@ -1,12 +1,15 @@
 package util.db;
 
 import org.junit.Test;
+import util.db.problem.ProblemOracleDBImpl;
 
 import java.sql.Connection;
 
 import static org.junit.Assert.*;
 
 public class DBTest {
+
+    DBConn dbConn = DBConn.getInstance();
 
     String driverClassName = "org.h2.Driver";
     String url = "jdbc:h2:mem:testdb//localhost:9092/default";
@@ -15,8 +18,7 @@ public class DBTest {
 
     @Test
     public void DBConnectionTest() {
-        OracleDBImpl oracleDB = new OracleDBImpl();
-        try (Connection connection = oracleDB.getInitConnection(driverClassName, url, userid, password);) {
+        try (Connection connection = dbConn.getInitConnection(driverClassName, url, userid, password);) {
             assertTrue(connection != null);
         } catch (Exception e) {
             e.printStackTrace();
@@ -25,12 +27,11 @@ public class DBTest {
 
     @Test
     public void DBCloseTest() {
-        OracleDBImpl oracleDB = new OracleDBImpl();
         Connection connection = null;
         try {
-            connection = oracleDB.getInitConnection(driverClassName, url, userid, password);
+            connection = dbConn.getInitConnection(driverClassName, url, userid, password);
             assertNotNull(connection);
-            oracleDB.closeConnection(connection);
+            dbConn.closeConnection(connection);
             assertTrue(connection.isClosed());
         } catch (Exception e) {
             e.printStackTrace();
