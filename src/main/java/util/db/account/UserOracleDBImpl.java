@@ -30,9 +30,9 @@ public class UserOracleDBImpl extends OracleDBImpl {
     }
 
     @Override
-    public PreparedStatement findById(String userid) throws SQLException {
+    public PreparedStatement findById(String id) throws SQLException {
         PreparedStatement ps = dbConn.getConnection().prepareStatement(SQL_USER_FIND_BY_ID);
-        ps.setString(1, userid);
+        ps.setString(1, id);
         return ps;
     }
 

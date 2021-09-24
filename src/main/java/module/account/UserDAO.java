@@ -1,6 +1,7 @@
 package module.account;
 
 import util.db.DBConn;
+import util.db.DBUtil;
 import util.db.account.UserH2DBImpl;
 import util.db.account.UserOracleDBImpl;
 
@@ -70,7 +71,14 @@ public class UserDAO {
         int result = 0;
 
         try {
-            PreparedStatement ps = ((UserOracleDBImpl) dbConn.getDbUtil()).deleteByUserid(userid);
+            PreparedStatement ps = null;
+            DBUtil util = dbConn.getDbUtil();
+            if (util instanceof UserOracleDBImpl) {
+                ps = ((UserOracleDBImpl) util).deleteByUserid(userid);
+            } else if (util instanceof  UserH2DBImpl) {
+                ps = ((UserH2DBImpl) util).deleteByUserid(userid);
+            }
+
             result = ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -83,7 +91,13 @@ public class UserDAO {
         int result = 0;
 
         try {
-            PreparedStatement ps = ((UserOracleDBImpl) dbConn.getDbUtil()).updatePasswordByUserid(userid, password);
+            PreparedStatement ps = null;
+            DBUtil util = dbConn.getDbUtil();
+            if (util instanceof UserOracleDBImpl) {
+                ps = ((UserOracleDBImpl) util).updatePasswordByUserid(userid, password);
+            } else if (util instanceof  UserH2DBImpl) {
+                ps = ((UserH2DBImpl) util).updatePasswordByUserid(userid, password);
+            }
             result = ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
