@@ -11,7 +11,7 @@ public class ProblemViewer extends Viewer {
     }
 
     public void createProblemPrint() {
-        System.out.println("추가할 문제 정보를 입력해주세요\n(띄어쓰기 기준으로 title, answer)");
+        System.out.println("추가할 문제 정보를 입력해주세요\n(줄바꿈 기준으로 title, answer)");
     }
 
     public void problemMenuPrint() {
