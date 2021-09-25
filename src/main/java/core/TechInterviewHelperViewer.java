@@ -1,5 +1,8 @@
 package core;
 
+import module.account.AccountController;
+import module.problem.ProblemController;
+
 import java.io.IOException;
 
 // 사용자에게 출력하거나 입력하는 기능을 담당
@@ -32,6 +35,35 @@ public class TechInterviewHelperViewer extends Viewer{
         System.out.println("===========================");
         System.out.println("= End TechInterviewHelper =");
         System.out.println("===========================");
+    }
+
+    public int setModeInput() {
+        int userInput = -1;
+        try {
+            boolean status = true;
+            while (status) {
+                modePrint();
+                userInput = Integer.parseInt(bufferedReader.readLine());
+                switch (userInput) {
+                    case 1:
+                        status = false;
+                        break;
+                    case 2:
+                        ProblemController problemController = new ProblemController();
+                        status = problemController.dispatchCommand(3);
+                        break;
+                    case 3:
+                        AccountController accountController = new AccountController();
+                        status = accountController.dispatchCommand(1);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return userInput;
     }
 
     public int input(int status) {
@@ -69,4 +101,7 @@ public class TechInterviewHelperViewer extends Viewer{
         System.out.println("1) 유저 추가\n2) 유저 찾기\n3) 유저 패스워드 변경\n4) 유저 삭제");
     }
 
+    private void modePrint() {
+        System.out.println("1) 회원 실행\n2) 비회원 실행\n3) 회원 가입");
+    }
 }

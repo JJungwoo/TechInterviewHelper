@@ -19,7 +19,7 @@ public class DispatchController implements Controller {
     public void start() {
         techInterviewHelperViewer.welcomeMessage();
 
-        while (dispatchCommand(techInterviewHelperViewer.input(0)))
+        while (dispatchCommand(techInterviewHelperViewer.setModeInput()))
 
         techInterviewHelperViewer.goodbyeMessage();
         techInterviewHelperViewer.closeTechInterviewHelperViewer();
