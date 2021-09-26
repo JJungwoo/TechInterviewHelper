@@ -30,13 +30,19 @@ public class DispatchController implements Controller {
     public boolean dispatchCommand(int command) {
         switch (command) {
             case 1:
+                // 로그인 이후 서비스 처리
                 accountController = new AccountController();
-                accountController.dispatchCommand(1);
+                if (accountController.dispatchCommand(1)) {
+                    problemController = new ProblemController();
+                    problemController.start();
+                }
                 break;
             case 2:
+                // 비회원 모드로 문제 출력
                 problemController = new ProblemController();
                 return problemController.dispatchCommand(3);
             case 3:
+                // 회원 가입
                 accountController = new AccountController();
                 return accountController.dispatchCommand(2);
             case 0:

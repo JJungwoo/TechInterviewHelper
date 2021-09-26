@@ -33,12 +33,11 @@ public class AccountController implements Controller {
 
     @Override
     public boolean dispatchCommand(int command) {
+        boolean status = true;
         switch (command) {
             case 1:
                 accountViewer.loginPrint();
-                if (findByUserid(UserInputParser.commandParsing(accountViewer.inputStr()))) {
-                    System.out.println("로그인 성공");
-                }
+                status = findByUserid(UserInputParser.commandParsing(accountViewer.inputStr()));
                 break;
             case 2:
                 accountViewer.createUserPrint();
@@ -46,7 +45,7 @@ public class AccountController implements Controller {
                 userCreate(user);
                 break;
             case 0:
-                return false;
+                status = false;
             default:
                 break;
         }
