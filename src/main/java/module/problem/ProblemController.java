@@ -34,11 +34,15 @@ public class ProblemController implements Controller {
     @Override
     public void start() {
         problemViewer.problemMenuPrint();
-        dispatchCommand(problemViewer.inputInt());
+        try {
+            while (dispatchCommand(problemViewer.inputInt()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public boolean dispatchCommand(int command) {
+    public boolean dispatchCommand(int command) throws Exception {
         switch (command) {
             case 1:
                 problemViewer.createProblemPrint();

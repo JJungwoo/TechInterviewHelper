@@ -17,4 +17,8 @@ public class AccountViewer extends Viewer {
     public void loginPrint() {
         System.out.println("로그인 정보를 입력해주세요\n(띄어쓰기 기준으로 userid, password)");
     }
+
+    public void loginFail() {
+        System.out.println("패스워드가 잘못되었습니다.");
+    }
 }

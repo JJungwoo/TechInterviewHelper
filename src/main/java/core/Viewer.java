@@ -18,7 +18,10 @@ public class Viewer {
     public List<String> inputStrList() {
         List<String> list = new ArrayList<>();
         try {
-            list.add(bufferedReader.readLine());
+            String userInput = "";
+            while (!(userInput = bufferedReader.readLine()).isEmpty()) {
+                list.add(userInput);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

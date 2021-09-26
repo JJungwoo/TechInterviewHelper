@@ -20,14 +20,18 @@ public class DispatchController implements Controller {
     public void start() {
         techInterviewHelperViewer.welcomeMessage();
 
-        while (dispatchCommand(techInterviewHelperViewer.setModeInput()))
+        try {
+            while (dispatchCommand(techInterviewHelperViewer.setModeInput()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         techInterviewHelperViewer.goodbyeMessage();
         techInterviewHelperViewer.closeTechInterviewHelperViewer();
     }
 
     @Override
-    public boolean dispatchCommand(int command) {
+    public boolean dispatchCommand(int command) throws Exception {
         switch (command) {
             case 1:
                 // 로그인 이후 서비스 처리

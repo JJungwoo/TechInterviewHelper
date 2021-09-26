@@ -28,16 +28,22 @@ public class AccountController implements Controller {
 
     @Override
     public void start() {
-        dispatchCommand(accountViewer.inputInt());
+        try {
+            dispatchCommand(accountViewer.inputInt());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public boolean dispatchCommand(int command) {
+    public boolean dispatchCommand(int command) throws Exception {
         boolean status = true;
         switch (command) {
             case 1:
                 accountViewer.loginPrint();
-                status = findByUserid(UserInputParser.commandParsing(accountViewer.inputStr()));
+                if (!(status = findByUserid(UserInputParser.commandParsing(accountViewer.inputStr())))) {
+                    accountViewer.loginFail();
+                }
                 break;
             case 2:
                 accountViewer.createUserPrint();
@@ -49,7 +55,7 @@ public class AccountController implements Controller {
             default:
                 break;
         }
-        return true;
+        return status;
     }
 
 }
