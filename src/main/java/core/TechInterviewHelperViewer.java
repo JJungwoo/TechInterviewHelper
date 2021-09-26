@@ -40,26 +40,8 @@ public class TechInterviewHelperViewer extends Viewer{
     public int setModeInput() {
         int userInput = -1;
         try {
-            boolean status = true;
-            while (status) {
-                modePrint();
-                userInput = Integer.parseInt(bufferedReader.readLine());
-                switch (userInput) {
-                    case 1:
-                        status = false;
-                        break;
-                    case 2:
-                        ProblemController problemController = new ProblemController();
-                        status = problemController.dispatchCommand(3);
-                        break;
-                    case 3:
-                        AccountController accountController = new AccountController();
-                        status = accountController.dispatchCommand(1);
-                        break;
-                    default:
-                        break;
-                }
-            }
+            modePrint();
+            userInput = Integer.parseInt(bufferedReader.readLine());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -102,6 +84,6 @@ public class TechInterviewHelperViewer extends Viewer{
     }
 
     private void modePrint() {
-        System.out.println("1) 회원 실행\n2) 비회원 실행\n3) 회원 가입");
+        System.out.println("1) 회원 실행\n2) 비회원 실행\n3) 회원 가입\n0) 서비스 종료");
     }
 }

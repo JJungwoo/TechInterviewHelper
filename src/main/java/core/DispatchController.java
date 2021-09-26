@@ -9,7 +9,8 @@ public class DispatchController implements Controller {
 
     private TechInterviewHelperViewer techInterviewHelperViewer;
 
-    private ProblemController problemController = ProblemController.getInstance();
+    private AccountController accountController;
+    private ProblemController problemController;
 
     public DispatchController() {
         techInterviewHelperViewer = new TechInterviewHelperViewer();
@@ -29,13 +30,15 @@ public class DispatchController implements Controller {
     public boolean dispatchCommand(int command) {
         switch (command) {
             case 1:
-                AccountController accountController = new AccountController();
-                accountController.start();
+                accountController = new AccountController();
+                accountController.dispatchCommand(1);
                 break;
             case 2:
-                ProblemController problemController = new ProblemController();
-                problemController.start();
-                break;
+                problemController = new ProblemController();
+                return problemController.dispatchCommand(3);
+            case 3:
+                accountController = new AccountController();
+                return accountController.dispatchCommand(2);
             case 0:
                 techInterviewHelperViewer.systemExit();
                 return false;

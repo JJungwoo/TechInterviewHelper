@@ -17,8 +17,8 @@ public class TechInterviewHelperMainThread extends Thread {
 
     public void initSystemConfiguration() {
         dbConn = DBConn.getInstance();
-//        dbConn.initDB("oracle", "src/main/resources/oracleDBinfo.propertise");
-        dbConn.initDB("h2", "src/main/resources/h2DBinfo.propertise");
+        dbConn.initDB("oracle", "src/main/resources/oracleDBinfo.propertise");
+//        dbConn.initDB("h2", "src/main/resources/h2DBinfo.propertise");
 
         dispatchController = new DispatchController();
     }
