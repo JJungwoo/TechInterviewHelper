@@ -33,9 +33,10 @@ public class ProblemController implements Controller {
 
     @Override
     public void start() {
-        problemViewer.problemMenuPrint();
         try {
-            while (dispatchCommand(problemViewer.inputInt()));
+            do {
+                problemViewer.problemMenuPrint();
+            } while (dispatchCommand(problemViewer.inputInt()));
         } catch (Exception e) {
             e.printStackTrace();
         }

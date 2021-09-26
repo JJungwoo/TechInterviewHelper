@@ -15,7 +15,7 @@ public class ProblemViewer extends Viewer {
     }
 
     public void problemMenuPrint() {
-        System.out.println("1) 문제 추가\n2) 모든 문제 출력\n3) 문제 랜덤 출력");
+        System.out.println("1) 문제 추가\n2) 모든 문제 출력\n3) 문제 랜덤 출력\n0) 문제 서비스 종료");
     }
 
     public void problemPrint(ProblemVO problem) {

@@ -14,6 +14,7 @@ import java.sql.SQLException;
 public class UserDAO {
 
     private static UserDAO userDAO = new UserDAO();
+    private static DBUtil dbUtil;
 
     // jdbc 에서 데이터 처리하기 위한 DB Connection 객체 가져오기
     static private DBConn dbConn = DBConn.getInstance();
@@ -22,9 +23,11 @@ public class UserDAO {
     public static UserDAO getInstance() {
         String database = dbConn.getDatabase();
         if (database.equals("oracle")) {
-            dbConn.setDbUtil(new UserOracleDBImpl());
+//            dbConn.setDbUtil(new UserOracleDBImpl());
+            dbUtil = new UserOracleDBImpl();
         } else if (database.equals("h2")) {
-            dbConn.setDbUtil(new UserH2DBImpl());
+//            dbConn.setDbUtil(new UserH2DBImpl());
+            dbUtil = new UserOracleDBImpl();
         }
         return userDAO;
     }
@@ -33,7 +36,7 @@ public class UserDAO {
         UserVO user = null;
 
         try {
-            PreparedStatement ps = dbConn.getDbUtil().findById(userid);
+            PreparedStatement ps = dbUtil.findById(userid);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 user = new UserVO.Builder()
@@ -58,7 +61,7 @@ public class UserDAO {
         int result = 0;
 
         try {
-            PreparedStatement ps = dbConn.getDbUtil().insert(user);
+            PreparedStatement ps = dbUtil.insert(user);
             result = ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -72,11 +75,10 @@ public class UserDAO {
 
         try {
             PreparedStatement ps = null;
-            DBUtil util = dbConn.getDbUtil();
-            if (util instanceof UserOracleDBImpl) {
-                ps = ((UserOracleDBImpl) util).deleteByUserid(userid);
-            } else if (util instanceof  UserH2DBImpl) {
-                ps = ((UserH2DBImpl) util).deleteByUserid(userid);
+            if (dbUtil instanceof UserOracleDBImpl) {
+                ps = ((UserOracleDBImpl) dbUtil).deleteByUserid(userid);
+            } else if (dbUtil instanceof  UserH2DBImpl) {
+                ps = ((UserH2DBImpl) dbUtil).deleteByUserid(userid);
             }
 
             result = ps.executeUpdate();
@@ -92,11 +94,10 @@ public class UserDAO {
 
         try {
             PreparedStatement ps = null;
-            DBUtil util = dbConn.getDbUtil();
-            if (util instanceof UserOracleDBImpl) {
-                ps = ((UserOracleDBImpl) util).updatePasswordByUserid(userid, password);
-            } else if (util instanceof  UserH2DBImpl) {
-                ps = ((UserH2DBImpl) util).updatePasswordByUserid(userid, password);
+            if (dbUtil instanceof UserOracleDBImpl) {
+                ps = ((UserOracleDBImpl) dbUtil).updatePasswordByUserid(userid, password);
+            } else if (dbUtil instanceof  UserH2DBImpl) {
+                ps = ((UserH2DBImpl) dbUtil).updatePasswordByUserid(userid, password);
             }
             result = ps.executeUpdate();
         } catch (SQLException e) {

@@ -16,13 +16,16 @@ public class ProblemDAO {
     private static ProblemDAO problemDAO = new ProblemDAO();
 
     private static DBConn dbConn = DBConn.getInstance();
+    private static DBUtil dbUtil;
 
     public static ProblemDAO getInstance() {
         String database = dbConn.getDatabase();
         if (database.equals("oracle")) {
-            dbConn.setDbUtil(new ProblemOracleDBImpl());
+//            dbConn.setDbUtil(new ProblemOracleDBImpl());
+            dbUtil = new ProblemOracleDBImpl();
         } else if (database.equals("h2")) {
-            dbConn.setDbUtil(new ProblemH2DBImpl());
+//            dbConn.setDbUtil(new ProblemH2DBImpl());
+            dbUtil = new ProblemH2DBImpl();
         }
         return problemDAO;
     }
@@ -31,7 +34,6 @@ public class ProblemDAO {
         int result = 0;
 
         try {
-            DBUtil dbUtil = dbConn.getDbUtil();
             PreparedStatement ps = dbUtil.insert(problem);
             result = ps.executeUpdate();
         } catch (SQLException e) {
@@ -45,7 +47,6 @@ public class ProblemDAO {
         ProblemVO problem = null;
 
         try {
-            DBUtil dbUtil = dbConn.getDbUtil();
             PreparedStatement ps = dbUtil.findById(pid);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -71,7 +72,6 @@ public class ProblemDAO {
         List<ProblemVO> problemVOList = new ArrayList<>();
 
         try {
-            DBUtil dbUtil = dbConn.getDbUtil();
             PreparedStatement ps = dbUtil.selectAll();
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
