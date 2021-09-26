@@ -29,6 +29,8 @@ public class ProblemController implements Controller {
         return list.get(new Random().nextInt(list.size()));
     }
 
+
+
     @Override
     public void start() {
         problemViewer.problemMenuPrint();
@@ -47,6 +49,9 @@ public class ProblemController implements Controller {
                 problemViewer.ListAllPrint(selectProblemAll());
                 break;
             case 3:
+                problemViewer.problemPrint(randomSelectProblem());
+                break;
+            case 4:
                 problemViewer.elementPrint(randomSelectProblem());
                 break;
             case 0:

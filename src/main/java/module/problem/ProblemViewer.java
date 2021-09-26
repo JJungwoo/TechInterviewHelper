@@ -18,4 +18,15 @@ public class ProblemViewer extends Viewer {
         System.out.println("1) 문제 추가\n2) 모든 문제 출력\n3) 문제 랜덤 출력");
     }
 
+    public void problemPrint(ProblemVO problem) {
+        System.out.println("문제 출력 : \n" + problem.getTitle());
+        problemAnswerPrint(problem.getAnswer());
+    }
+
+    public void problemAnswerPrint(String answer) {
+        System.out.println("답을 출력하려면 enter를 입력해주세요.");
+        inputStr();
+        System.out.println("문제 답 : \n" + answer);
+    }
+
 }
