@@ -1,7 +1,13 @@
--- users 테이블 생성
 
-drop table if exists users;
-drop SEQUENCE if exists Users_SEQ;
+
+create user jungwoo identified by jungwoo;
+
+grant connect, resource, dba to jungwoo;
+
+conn jungwoo/jungwoo;
+
+drop table users;
+drop SEQUENCE Users_SEQ;
 
 CREATE TABLE users
 (
@@ -21,10 +27,8 @@ MINVALUE 1
 START WITH 1
 INCREMENT BY 1;
 
--- problems 테이블 생성
-
-drop table if exists Problems;
-drop SEQUENCE if exists Problems_SEQ;
+drop table Problems;
+drop SEQUENCE Problems_SEQ;
 
 CREATE TABLE Problems
 (
