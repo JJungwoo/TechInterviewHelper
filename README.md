@@ -44,3 +44,41 @@
 # 테이블 구조
 
 ![TechInterviewHelper_dbTablepng](https://user-images.githubusercontent.com/22315365/134884254-4849e550-ffdb-4801-b586-75afbcf7367e.png)
+
+# 서비스 사용 예시
+
+## 메인 화면
+
+![사용법1](https://user-images.githubusercontent.com/22315365/134948013-009a48b2-e596-4607-b1aa-765f03d07964.PNG)
+
+## 회원 모드 
+
+#### 로그인
+
+![image](https://user-images.githubusercontent.com/22315365/134948288-0885b7c5-0692-461e-98b7-23a5983fd53b.png)
+
+### 로그인 이후 메뉴
+
+![image](https://user-images.githubusercontent.com/22315365/134949161-f1f09a00-7f94-4a5d-a591-477191a3eaa8.png)
+
+#### 1) 문제 추가 기능
+
+![image](https://user-images.githubusercontent.com/22315365/134948533-42233d05-6935-4b32-8a8e-f8c2a3128776.png)
+
+#### 2) 모든 문제 출력 결과
+
+![image](https://user-images.githubusercontent.com/22315365/134948906-d591c0d2-9a92-4b32-ac3f-7932611b6620.png)
+
+#### 3) 문제 랜덤 출력 결과
+
+![image](https://user-images.githubusercontent.com/22315365/134949567-5f063505-e580-444b-8e15-037e66edbe57.png)
+
+#### 4) 문제 관심 목록에 추가 기능
+
+![image](https://user-images.githubusercontent.com/22315365/134949813-0075e966-2309-413c-88fa-e098923c663b.png)
+
+#### 5) 관심 목록 문제 모두 출력
+
+![image](https://user-images.githubusercontent.com/22315365/134949679-a587e6a1-be38-4bf8-964f-3b8f8ed37689.png)
+
+
