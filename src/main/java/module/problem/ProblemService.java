@@ -24,6 +24,10 @@ public class ProblemService {
         return problemDAO.problemSelectAll();
     }
 
+    public Long saveLikeProblem(Long userId, Long problemId) {
+        return problemDAO.saveLikeProblem(userId, problemId);
+    }
+
     public void delete() {
 
     }

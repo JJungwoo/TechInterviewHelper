@@ -29,9 +29,9 @@ public class ProblemViewer extends Viewer {
         System.out.println("문제 답 : \n" + answer);
     }
 
-    public int youLikeProblemPrint() {
+    public long youLikeProblemPrint() {
         System.out.println("관심 목록에 추가하고 싶은 문제 ID를 입력해주세요.");
-        return inputInt();
+        return inputLong();
     }
 
 }

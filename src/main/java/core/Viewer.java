@@ -48,6 +48,16 @@ public class Viewer {
         return userInput;
     }
 
+    public long inputLong() {
+        long userInput = -1;
+        try {
+            userInput = Long.parseLong(bufferedReader.readLine());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return userInput;
+    }
+
     public void wrongInputMessage() {
         System.out.println("잘못된 입력입니다.");
     }

@@ -2,6 +2,7 @@ package module.problem;
 
 import core.Controller;
 import core.UserInputParser;
+import module.account.AccountService;
 import util.db.DBConn;
 
 import java.util.List;
@@ -12,6 +13,7 @@ public class ProblemController implements Controller {
     private static ProblemViewer problemViewer = ProblemViewer.getInstance();
 
     private static ProblemService problemService = ProblemService.getInstance();
+    private static AccountService accountService = AccountService.getInstance();
 
     public void createProblem(ProblemVO problem) {
         problemService.save(problem);
@@ -30,6 +32,9 @@ public class ProblemController implements Controller {
         return list.get(new Random().nextInt(list.size()));
     }
 
+    public Long saveLikeProblem(Long userId, Long problemId) {
+        return problemService.saveLikeProblem(userId, problemId);
+    }
 
 
     @Override
@@ -59,8 +64,8 @@ public class ProblemController implements Controller {
                 problemViewer.problemPrint(randomSelectProblem());
                 break;
             case 4:
-                System.out.println(dbConn.getUserid());
-                System.out.println(problemViewer.youLikeProblemPrint());
+                Long problemId = problemViewer.youLikeProblemPrint();
+                saveLikeProblem(accountService.findById(dbConn.getUserid()).getId(), problemId);
                 break;
             case 5:
                 problemViewer.elementPrint(randomSelectProblem());

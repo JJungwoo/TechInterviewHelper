@@ -2,6 +2,7 @@ package module.problem;
 
 import util.db.DBConn;
 import util.db.DBUtil;
+import util.db.OracleDBImpl;
 import util.db.problem.ProblemH2DBImpl;
 import util.db.problem.ProblemOracleDBImpl;
 
@@ -91,6 +92,19 @@ public class ProblemDAO {
         }
 
         return problemVOList;
+    }
+
+    public Long saveLikeProblem(Long userId, Long problemId) {
+        int result = 0;
+
+        try {
+            PreparedStatement ps = ((ProblemOracleDBImpl) dbUtil).userLikeInsert(userId, problemId);
+            result = ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return result >= 1 ? problemId : null;
     }
 
     public void delete() {
