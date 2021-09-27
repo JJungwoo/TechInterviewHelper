@@ -36,6 +36,9 @@ public class ProblemController implements Controller {
         return problemService.saveLikeProblem(userId, problemId);
     }
 
+    public List<ProblemVO> selectUserLikeProblemAll(String userId) {
+        return problemService.selectUserLikeProblemAll(userId);
+    }
 
     @Override
     public void start() {
@@ -68,6 +71,9 @@ public class ProblemController implements Controller {
                 saveLikeProblem(accountService.findById(dbConn.getUserid()).getId(), problemId);
                 break;
             case 5:
+                problemViewer.ListAllPrint(selectUserLikeProblemAll(dbConn.getUserid()));
+                break;
+            case 6:
                 problemViewer.elementPrint(randomSelectProblem());
                 break;
             case 0:

@@ -13,6 +13,8 @@ public class ProblemOracleDBImpl extends OracleDBImpl {
     static final String SQL_PROBLEM_INSERT = "insert into problems values(Problems_SEQ.nextval, ?, ?, ?, ?, sysdate, sysdate, ?)";
     static final String SQL_PROBLEM_SELECT_ALL = "select * from problems";
     static final String SQL_USERLIKE_INSERT = "insert into userlike values(USERLIKE_SEQ.NEXTVAL, ?, ?, sysdate, 'like')";
+    static final String SQL_USERLIKE_PROBLEM_FIND_BY_USERID = "select * from problems where pid in " +
+                                            "(select problemid from users u join userlike ul on u.id = ul.userid where u.userid like ?)";
 
     static private DBConn dbConn = DBConn.getInstance();
 
@@ -45,6 +47,12 @@ public class ProblemOracleDBImpl extends OracleDBImpl {
         PreparedStatement ps = dbConn.getConnection().prepareStatement(SQL_USERLIKE_INSERT);
         ps.setLong(1, userId);
         ps.setLong(2, problemId);
+        return ps;
+    }
+
+    public PreparedStatement selectUserLikeProblemAll(String userId) throws SQLException {
+        PreparedStatement ps = dbConn.getConnection().prepareStatement(SQL_USERLIKE_PROBLEM_FIND_BY_USERID);
+        ps.setString(1, userId);
         return ps;
     }
 }

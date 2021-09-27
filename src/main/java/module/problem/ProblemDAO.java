@@ -107,6 +107,31 @@ public class ProblemDAO {
         return result >= 1 ? problemId : null;
     }
 
+    public List<ProblemVO> selectUserLikeProblemAll(String userId) {
+        List<ProblemVO> problemVOList = new ArrayList<>();
+
+        try {
+            PreparedStatement ps = ((ProblemOracleDBImpl) dbUtil).selectUserLikeProblemAll(userId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                problemVOList.add(new ProblemVO.Builder()
+                        .pid(rs.getLong(1))
+                        .title(rs.getString(2))
+                        .answer(rs.getString(3))
+                        .likeCount(rs.getLong(4))
+                        .unlikeCount(rs.getLong(5))
+                        .enrollDate(rs.getDate(6))
+                        .updateDate(rs.getDate(7))
+                        .tid(rs.getLong(8))
+                        .build());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return problemVOList;
+    }
+
     public void delete() {
 
     }

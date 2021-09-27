@@ -28,6 +28,10 @@ public class ProblemService {
         return problemDAO.saveLikeProblem(userId, problemId);
     }
 
+    public List<ProblemVO> selectUserLikeProblemAll(String userId) {
+        return problemDAO.selectUserLikeProblemAll(userId);
+    }
+
     public void delete() {
 
     }
