@@ -2,6 +2,7 @@ package module.problem;
 
 import core.Controller;
 import core.UserInputParser;
+import util.db.DBConn;
 
 import java.util.List;
 import java.util.Random;
@@ -44,6 +45,7 @@ public class ProblemController implements Controller {
 
     @Override
     public boolean dispatchCommand(int command) throws Exception {
+        DBConn dbConn = DBConn.getInstance();
         switch (command) {
             case 1:
                 problemViewer.createProblemPrint();
@@ -57,6 +59,10 @@ public class ProblemController implements Controller {
                 problemViewer.problemPrint(randomSelectProblem());
                 break;
             case 4:
+                System.out.println(dbConn.getUserid());
+                System.out.println(problemViewer.youLikeProblemPrint());
+                break;
+            case 5:
                 problemViewer.elementPrint(randomSelectProblem());
                 break;
             case 0:
