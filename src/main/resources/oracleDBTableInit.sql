@@ -47,3 +47,18 @@ CREATE SEQUENCE Problems_SEQ
 MINVALUE 1
 START WITH 1
 INCREMENT BY 1;
+
+CREATE TABLE UserLike
+(
+    id               NUMBER(10, 0)    NOT NULL,
+    userid           NUMBER(10, 0)    NOT NULL,
+    problemid        NUMBER(10, 0)    NOT NULL,
+    update_date       DATE             NOT NULL,
+    like_or_unlike    VARCHAR2(10)     NOT NULL,
+    CONSTRAINT PK_UserLike PRIMARY KEY (id)
+);
+
+CREATE SEQUENCE UserLike_SEQ
+MINVALUE 1
+START WITH 1
+INCREMENT BY 1;
