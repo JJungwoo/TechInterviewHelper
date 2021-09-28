@@ -44,7 +44,8 @@
 
 # 📖 테이블 구조
 
-![TechInterviewHelper_dbTablepng](https://user-images.githubusercontent.com/22315365/134884254-4849e550-ffdb-4801-b586-75afbcf7367e.png)
+![TechInterviewHelper_dbTable](https://user-images.githubusercontent.com/22315365/135008630-18bd3028-6e6c-464f-b8b4-3ff2837df6b1.png)
+
 
 # 🧑‍💻 서비스 사용 예시
 
