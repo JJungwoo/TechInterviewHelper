@@ -55,7 +55,7 @@
 
 #### 로그인
 
-![image](https://user-images.githubusercontent.com/22315365/134948288-0885b7c5-0692-461e-98b7-23a5983fd53b.png)
+![image](https://user-images.githubusercontent.com/22315365/135003498-0dbe57e4-0a1d-4f13-94b2-4794aa50e004.png)
 
 ### 로그인 이후 메뉴
 
@@ -80,5 +80,14 @@
 #### 5) 관심 목록 문제 모두 출력
 
 ![image](https://user-images.githubusercontent.com/22315365/134949679-a587e6a1-be38-4bf8-964f-3b8f8ed37689.png)
+
+
+## 비회원 실행
+
+![image](https://user-images.githubusercontent.com/22315365/135003444-4a4dfcfa-a62e-4cee-a766-f29baf489867.png)
+
+## 회원 가입
+
+![image](https://user-images.githubusercontent.com/22315365/135003334-39925f68-a558-4ec2-91e5-78e9002986ef.png)
 
 
