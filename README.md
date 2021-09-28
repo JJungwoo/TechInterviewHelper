@@ -35,7 +35,8 @@
 # 사용 기술
 - JDK 11
 - Oracle, H2
-- junit 4
+- Junit 4
+- Gradle
 
 # 클래스 다이어그램
 
