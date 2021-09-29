@@ -1,11 +1,11 @@
 package util.db;
 
 import org.junit.Test;
-import util.db.problem.ProblemOracleDBImpl;
 
 import java.sql.Connection;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class DBTest {
 

@@ -2,7 +2,6 @@ package module.problem;
 
 import util.db.DBConn;
 import util.db.DBUtil;
-import util.db.OracleDBImpl;
 import util.db.problem.ProblemH2DBImpl;
 import util.db.problem.ProblemOracleDBImpl;
 

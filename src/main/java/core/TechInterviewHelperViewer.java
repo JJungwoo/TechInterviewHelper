@@ -1,8 +1,5 @@
 package core;
 
-import module.account.AccountController;
-import module.problem.ProblemController;
-
 import java.io.IOException;
 
 // 사용자에게 출력하거나 입력하는 기능을 담당

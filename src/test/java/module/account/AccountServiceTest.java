@@ -1,5 +1,6 @@
 package module.account;
 
+import exception.UserNotFoundException;
 import org.junit.Before;
 import org.junit.Test;
 import util.db.DBConn;
@@ -23,7 +24,11 @@ public class AccountServiceTest {
 
     @Test
     public void findByIdTest() {
-        assertEquals("testuser@gmail.com", service.findById("testuser").getEmail());
+        try {
+            assertEquals("testuser@gmail.com", service.findById("testuser").getEmail());
+        } catch (UserNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
